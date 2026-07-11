@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cloud Grind - Better Coffee, Better Process</title>
+    <meta name="description" content="Fresh-roasted specialty coffee shipped within 48 hours. Direct trade, no contracts, no gatekeeping. Subscribe and save 15%.">
+    <meta property="og:title" content="Cloud Grind - Better Coffee. Better Process. Zero BS.">
+    <meta property="og:description" content="Fresh-roasted specialty coffee shipped within 48 hours. Direct trade, no contracts, no gatekeeping.">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,6 +17,7 @@
             <div class="logo">Cloud Grind</div>
             <ul class="nav-links">
                 <li><a href="#coffee">Coffee</a></li>
+                <li><a href="#quiz">Find Yours</a></li>
                 <li><a href="#why">Why Us</a></li>
                 <li><a href="#cta">Subscribe</a></li>
             </ul>
@@ -24,7 +29,15 @@
         <div class="container">
             <h1>Better Coffee.<br>Better Process.<br>Zero BS.</h1>
             <p>Fresh-roasted specialty coffee shipped within 48 hours. No contracts. Pause anytime.</p>
-            <button class="btn btn-primary">Start Subscription</button>
+            <div class="hero-actions">
+                <a href="#cta" class="btn btn-primary">Start Subscription</a>
+                <a href="#quiz" class="btn btn-secondary">Find Your Coffee</a>
+            </div>
+            <ul class="trust-bar">
+                <li>Ships within 48 hours</li>
+                <li>Farmers paid 3x commodity prices</li>
+                <li>Pause or cancel anytime</li>
+            </ul>
         </div>
     </section>
 
@@ -52,6 +65,28 @@
                     <p class="coffee-note">Whatever's good right now. Always rotating.</p>
                     <p class="price">$28/bag</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz-section">
+        <div class="container">
+            <h2>Find Your Coffee</h2>
+            <p class="section-subtitle">One question. That's it.</p>
+
+            <p class="quiz-question">How do you usually make coffee?</p>
+            <div class="quiz-options">
+                <button class="btn btn-secondary" data-result="espresso">Espresso machine</button>
+                <button class="btn btn-secondary" data-result="drip">Drip or pour-over</button>
+                <button class="btn btn-secondary" data-result="surprise">Surprise me</button>
+            </div>
+
+            <div class="quiz-result" id="quiz-result" hidden>
+                <h3 id="quiz-result-name"></h3>
+                <p id="quiz-result-note"></p>
+                <p class="price" id="quiz-result-price"></p>
+                <a href="#cta" class="btn btn-primary">Get This One</a>
             </div>
         </div>
     </section>
@@ -107,7 +142,10 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-large">Join Subscription</button>
+                <form id="subscription-form" onsubmit="handleSubscription(event)">
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn btn-primary btn-large">Join Subscription</button>
+                </form>
             </div>
         </div>
     </section>
@@ -117,11 +155,51 @@
         <div class="container">
             <p>&copy; 2026 Cloud Grind. Better coffee. Better process. Zero BS.</p>
             <ul class="footer-links">
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Terms</a></li>
-                <li><a href="mailto:hello@cloudgrind.com">Contact</a></li>
+                <li><a href="/privacy">Privacy</a></li>
+                <li><a href="/terms">Terms</a></li>
+                <li><a href="mailto:theconnectivetissue1@gmail.com">Contact</a></li>
             </ul>
         </div>
     </footer>
+
+    <script>
+        const quizResults = {
+            espresso: {
+                name: 'Ethiopian Single Origin',
+                note: 'Bright, clean, balanced. Works great for espresso.',
+                price: '$24/bag'
+            },
+            drip: {
+                name: 'Brazilian Blend',
+                note: 'Smooth, chocolatey, easy-going. Perfect for drip.',
+                price: '$20/bag'
+            },
+            surprise: {
+                name: 'Seasonal Roast',
+                note: "Whatever's good right now. Always rotating.",
+                price: '$28/bag'
+            }
+        };
+
+        document.querySelectorAll('.quiz-options button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const result = quizResults[button.dataset.result];
+                document.getElementById('quiz-result-name').textContent = result.name;
+                document.getElementById('quiz-result-note').textContent = result.note;
+                document.getElementById('quiz-result-price').textContent = result.price;
+                document.getElementById('quiz-result').hidden = false;
+                document.querySelectorAll('.quiz-options button').forEach(function (b) {
+                    b.classList.toggle('selected', b === button);
+                });
+            });
+        });
+
+        function handleSubscription(event) {
+            event.preventDefault();
+            const email = event.target.email.value;
+            alert('Thanks for subscribing! We\'ll send you an email at ' + email + ' with next steps.');
+            event.target.reset();
+        }
+    </script>
 </body>
 </html>

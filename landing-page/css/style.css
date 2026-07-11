@@ -113,9 +113,51 @@ body {
     color: var(--primary);
 }
 
+.btn-secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 12px 30px;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--primary);
+    background: var(--accent);
+}
+
 .btn-large {
     padding: 16px 48px;
     font-size: 18px;
+}
+
+/* Hero Actions & Trust Bar */
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.trust-bar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.trust-bar li {
+    font-size: 14px;
+    color: #666;
+}
+
+.trust-bar li::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 8px;
 }
 
 /* Coffee Section */
@@ -173,6 +215,73 @@ body {
     font-size: 24px;
     font-weight: 700;
     color: var(--accent);
+}
+
+/* Quiz Section */
+.quiz-section {
+    padding: 80px 0;
+    background: var(--light);
+    text-align: center;
+}
+
+.quiz-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.quiz-question {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 24px;
+}
+
+.quiz-options {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.quiz-options .btn-secondary {
+    background: var(--white);
+}
+
+.quiz-options .btn-secondary.selected {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.quiz-result {
+    margin-top: 40px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: 30px;
+    background: var(--white);
+}
+
+.quiz-result h3 {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.quiz-result p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 16px;
+}
+
+.quiz-result .price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 20px;
 }
 
 /* Why Section */
@@ -283,6 +392,30 @@ body {
     margin-top: 8px;
 }
 
+/* Subscription Form */
+#subscription-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+#subscription-form input {
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+#subscription-form input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
 /* Footer */
 .footer {
     background: var(--primary);
@@ -331,9 +464,15 @@ body {
     }
 
     .coffee-section h2,
+    .quiz-section h2,
     .why-section h2,
     .subscription-content h2 {
         font-size: 28px;
+    }
+
+    .trust-bar {
+        flex-direction: column;
+        gap: 10px;
     }
 
     .nav-links {
